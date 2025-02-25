@@ -22,3 +22,28 @@ console.log(book1.getDetails()); //get the details of the book requested
 
 book1.updateCopies(-1); //update the copies number of the book to subtract 1 copy
 console.log(book1.getDetails());  //return the updated details of the book requested 
+
+
+//Task 2: Creating a Borrower Class
+class Borrower {  //Create a class Borrower to store information about books checked out or returned
+    constructor(name, borrowerId, borrowedBooks){
+        this.name = name;
+        this.borrowerId = borrowerId;
+        this.borrowedBooks = [];}
+
+    borrowBook(book){
+        this.borrowedBooks.push(book); //method that adds the book plugged in when called to the borrowered books array
+        console.log(`${this.name} checked out ${book}`);}
+        
+    returnBook(book){
+        this.borrowedBooks.pop(book);  //mehtod that removes the book plugged in when called from the array meaning it is returned
+        console.log(`${book} was returned by ${this.name}`);}
+}
+
+//Establish a new borrower with a book they are checking out 
+const borrower1 = new Borrower("Alice Johnson", 201);
+borrower1.borrowBook("The Great Gatsby"); //assign the book they are checking out to their name
+console.log(borrower1.borrowedBooks);  //print the book in the array
+
+borrower1.returnBook("The Great Gatsby");  //remove the book from the array using the method
+console.log(borrower1.borrowedBooks); //print an updated array list 
