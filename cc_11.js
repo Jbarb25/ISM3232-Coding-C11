@@ -47,3 +47,22 @@ console.log(borrower1.borrowedBooks);  //print the book in the array
 
 borrower1.returnBook("The Great Gatsby");  //remove the book from the array using the method
 console.log(borrower1.borrowedBooks); //print an updated array list 
+
+
+//Task 3: Creating a library class
+class Library {
+    constructor(books, borrowers){  //create a libabry class that stores the list of books in the library and the list of borrowers for the books
+        this.books = [];
+        this.borrowers = [];}
+
+    addBook(book){
+        return this.books.push(book);}  //add a method that adds a book to the library array of books
+
+    listBooks(){
+        return this.books.forEach(book => console.log(book.getDetails()));} //print the updated information for the updated list of books in the library 
+}
+
+//Estabish a new library
+const library = new Library();
+library.addBook(book1);  //add a new book to the array of books in the library
+library.listBooks();  //print the updated information of each book in the library
