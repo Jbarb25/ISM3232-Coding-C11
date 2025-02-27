@@ -78,6 +78,19 @@ class Library {
         borrower.borrowBook(book); //update the borrowed books list from the Borrower class to inclue the new lended book
         book.updateCopies(-1);} //remove one copy from the number of copies for the book from the library
 
+    
+    //Task 5: Implementing Book Returns
+    returnBook(borrowerId, isbn){
+        const borrower = this.borrowers.find(b => b.borrowerId === borrowerId); //for borrower find the borrower ID
+        const book = this.books.find(b => b.isbn === isbn); //for book find the isbn
+        
+        if (!borrower || !book || !borrower.borrowedBooks.includes(book.title)){ //if the borrower, book, or the link between the two are not found, do the following
+            console.log("Non-returnable: Borrowed book / Borrower not found"); //error message
+            return;}
+        
+        borrower.returnBook(book);  //for the book assigned to the borrower, return the book using the returnBook method
+        book.updateCopies(1);} //for the book, update the number of copies by adding 1 returned
+
 }
 //Estabish a new library
 const library = new Library();
@@ -90,3 +103,10 @@ library.addBorrower(borrower1); //add a new borrower to the borrower list
 library.lendBook(201, 123456); //lend a book using the lend book method plugging in the parameters
 console.log(book1.getDetails()); //print the updated details for the book
 console.log(borrower1.borrowedBooks); //print the borrowered books assigned to the borrower 
+
+
+//Task 5: Implementing Book Returns
+library.returnBook(201, 123456); //return the book assigned to the borrowerId and the isbn of the book in the library
+console.log(book1.getDetails()); //print the updated details of the book 
+
+console.log(borrower1.borrowedBooks); //print the updated list of borrowed books by the borrower
